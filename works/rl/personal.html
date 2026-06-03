@@ -1,159 +1,565 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Aria — Personal Project</title>
+  <script defer src="../../app.js"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap');
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../works-styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+*{margin:0;padding:0;box-sizing:border-box}
 
-    <script defer src="../../app.js"></script>
+:root{
+  --pink:#f9a8c9;
+  --pink-soft:#fde8f2;
+  --pink-deep:#e8648f;
+  --pink-pale:#fff0f7;
+  --black:#1a1117;
+  --black2:#2e2029;
+  --white:#fffbfd;
+  --grid-color:rgba(233,170,200,0.18);
+  --text-muted:#9c7a88;
+}
 
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--black);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+
+/* ── NAV ─────────────────────────────────────────────── */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,251,253,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(249,168,201,0.35);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+  height:62px;
+}
+
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:22px;
+  font-weight:700;
+  color:var(--black);
+  text-decoration:none;
+  letter-spacing:-0.5px;
+  transition:color .2s;
+}
+
+.nav-logo:hover{color:var(--pink-deep)}
+
+.nav-links{
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+.nav-links a{
+  color:var(--text-muted);
+  font-size:14px;
+  font-weight:500;
+  text-decoration:none;
+  letter-spacing:.04em;
+  transition:color .2s;
+}
+
+.nav-links a:hover{color:var(--pink-deep)}
+
+/* ── HERO ────────────────────────────────────────────── */
+
+#hero{
+  min-height:70vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:var(--black);
+  background-image:
+    linear-gradient(0deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent),
+    linear-gradient(90deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent);
+  background-size:55px 55px;
+  position:relative;
+}
+
+#hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(249,168,201,0.1) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+#hero::before{
+  content:'✦  ✦  ✦';
+  position:absolute;
+  top:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  color:rgba(249,168,201,.35);
+  font-size:13px;
+  letter-spacing:1.2rem;
+  z-index:1;
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  max-width:700px;
+  padding:4rem 2rem;
+}
+
+.hero-eyebrow{
+  display:inline-block;
+  background:rgba(249,168,201,.15);
+  border:1px solid rgba(249,168,201,.4);
+  color:#fcd5e9;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:5px 18px;
+  border-radius:100px;
+  margin-bottom:1.25rem;
+}
+
+.hero-content h1{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(42px,7vw,84px);
+  font-weight:700;
+  color:#fff;
+  line-height:.95;
+  margin-bottom:1rem;
+  letter-spacing:-2px;
+}
+
+.hero-content p{
+  font-size:16px;
+  color:rgba(255,255,255,.55);
+  margin-bottom:2rem;
+  font-weight:300;
+  line-height:1.75;
+}
+
+.hero-btns{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:var(--pink);
+  color:var(--black);
+  border:none;
+  padding:12px 28px;
+  border-radius:100px;
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:.04em;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn-primary:hover{
+  background:var(--pink-deep);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+.btn-outline{
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.3);
+  padding:12px 28px;
+  border-radius:100px;
+  font-family:'DM Sans',sans-serif;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:.04em;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn-outline:hover{
+  border-color:var(--pink);
+  color:var(--pink);
+  transform:translateY(-2px);
+}
+
+/* ── SHARED SECTION ──────────────────────────────────── */
+
+.section-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:80px 5%;
+}
+
+.section-label{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--pink-deep);
+  margin-bottom:.6rem;
+}
+
+.section-sub{
+  color:var(--text-muted);
+  font-size:15px;
+  font-weight:300;
+  margin-top:.25rem;
+  margin-bottom:2.5rem;
+}
+
+/* ── VIDEOS SECTION ──────────────────────────────────── */
+
+#videos{
+  background:var(--white);
+}
+
+#videos h2{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(30px,4vw,52px);
+  font-weight:700;
+  letter-spacing:-1px;
+  margin-bottom:.25rem;
+  color:var(--black);
+  line-height:1.1;
+}
+
+.videos-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:1.25rem;
+}
+
+.video-card{
+  background:#fff;
+  border:1px solid rgba(249,168,201,.35);
+  border-radius:20px;
+  padding:1rem;
+  text-align:center;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  position:relative;
+}
+
+.video-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--pink-deep);
+  box-shadow:0 10px 36px rgba(232,100,143,.15);
+}
+
+.video-card video{
+  border-radius:12px;
+  display:block;
+  width:288px;
+  height:512px;
+  background:#1a1117;
+}
+
+.card-meta{
+  padding:.5rem .25rem 0;
+}
+
+.card-meta .date{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+.card-meta .desc{
+  font-size:14px;
+  font-weight:400;
+  color:#5a4450;
+  margin-top:.25rem;
+}
+
+/* pinned card */
+
+.video-card.pinned{
+  border-color:var(--pink);
+  box-shadow:0 4px 28px rgba(249,168,201,.25);
+}
+
+.pin-badge{
+  position:absolute;
+  top:1.25rem;
+  left:1.25rem;
+  background:var(--pink);
+  color:var(--black);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 11px;
+  border-radius:100px;
+  z-index:1;
+}
+
+.views-badge{
+  background:#f5c842;
+  color:#3a2a00;
+}
+
+/* ── MORE SECTION ────────────────────────────────────── */
+
+#more{
+  background:var(--black);
+  background-image:
+    linear-gradient(0deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent),
+    linear-gradient(90deg,transparent 24%,var(--grid-color) 25%,var(--grid-color) 26%,transparent 27%,transparent 74%,var(--grid-color) 75%,var(--grid-color) 76%,transparent 77%,transparent);
+  background-size:55px 55px;
+}
+
+.more-inner{
+  max-width:860px;
+}
+
+#more h2{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(30px,4vw,52px);
+  font-weight:700;
+  letter-spacing:-1px;
+  color:#fff;
+  margin-bottom:1rem;
+  line-height:1.1;
+}
+
+.more-body{
+  font-size:16px;
+  line-height:1.85;
+  color:#7a5a68;
+  margin-bottom:2.5rem;
+  font-weight:300;
+}
+
+.more-body a{
+  color:var(--pink);
+  text-decoration:none;
+  font-weight:500;
+}
+
+.more-body a:hover{
+  color:var(--pink-deep);
+  text-decoration:underline;
+}
+
+.tiktok-wrapper{
+  display:flex;
+  justify-content:center;
+}
+
+/* ── ETHERA STATS ────────────────────────────────────── */
+
+.ethera-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom:2.5rem;
+}
+
+.estat{
+  background:rgba(249,168,201,.06);
+  border:1px solid rgba(249,168,201,.18);
+  border-radius:16px;
+  padding:1.25rem 2rem;
+  text-align:center;
+  flex:1;
+  min-width:140px;
+}
+
+.estat-num{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:38px;
+  font-weight:700;
+  color:var(--pink);
+  line-height:1;
+}
+
+.estat-label{
+  font-size:13px;
+  color:#7a5a68;
+  margin-top:.4rem;
+  font-weight:300;
+}
+
+/* ── FOOTER ──────────────────────────────────────────── */
+
+footer{
+  background:var(--black);
+  color:#4a3040;
+  text-align:center;
+  padding:2rem;
+  font-size:13px;
+  letter-spacing:.04em;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+
+@media(max-width:600px){
+  nav{padding:0 1rem}
+  .nav-links{gap:1.2rem}
+  .section-inner{padding:60px 1rem}
+  .video-card video{width:240px;height:426px}
+}
+  </style>
 </head>
-
 <body>
 
-    <header>
+  <nav>
+    <a class="nav-logo" href="../../index.html">← Aria</a>
+    <div class="nav-links">
+      <a href="#videos">SpotLight</a>
+      <a href="#more">More</a>
+    </div>
+  </nav>
 
-        <a class="back" href="../../index.html">Home</a>
-        <a href="#videos">Videos SpotLight</a>
-        <a href="#more">More</a>
+  <section id="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Personal Project</span>
+      <h1>My TikTok<br><em>Edits</em></h1>
+      <p>Rocket League highlights, meme cuts, and collab work.</p>
+      <div class="hero-btns">
+        <a href="#videos" class="btn-primary">SpotLight</a>
+        <a href="#more" class="btn-outline">More</a>
+      </div>
+    </div>
+  </section>
 
-    </header>
+  <section id="videos">
+    <div class="section-inner">
+      <div class="section-label">SpotLight</div>
+      <h2><em>Peak Edits</em></h2>
+      <p class="section-sub">The ones I'm most proud of</p>
 
-    <section id="hero" class="personal-hero">
-        <div class="container">
+      <div class="videos-grid">
 
-            <h1>Personal Project</h1>
-            <a href="#videos">
-                <button>Videos</button>
-            </a>
-
-            <a href="#more">
-                <button>More</button>
-            </a>
-
+        <div class="video-card pinned">
+          <div class="pin-badge">Favorite</div>
+          <video controls>
+            <source src="https://github.com/aria-jpeg/editor-portfolio/raw/refs/heads/main/resources/rl-vids/personal/16-02-25.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">16/02/25</span>
+            <p class="desc">My Favorite Personal Edit</p>
+          </div>
         </div>
-    </section>
 
-    <section id="videos">
-        <div class="container">
-
-            <h1>Videos SpotLight</h1>
-            <p>Peak edits I made</p>
-            <div class="videos-section">
-
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/editor-portfolio/raw/refs/heads/main/resources/rl-vids/personal/16-02-25.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">16/02/25</p>
-                    <p class="description">My Favorite Personal Edit</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/16-09-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">16/09/24</p>
-                    <p class="description">Matrix. It is cool, I guess...</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/editor-portfolio/raw/refs/heads/main/resources/rl-vids/personal/19-08-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">19/08/24</p>
-                    <p class="description">I have been in this place before...</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/05-05-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">05/05/24</p>
-                    <p class="description">First edit I really invested time</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/08-09-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">08/09/24</p>
-                    <p class="description">Transitions tests</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/12-07-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">12/07/24</p>
-                    <p class="description">Meme edit, in portuguese, it is funny trust me</p>
-                </div>
-
-                <div class="hidden-item">
-                    <video controls>
-                        <source
-                            src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/17-07-24.mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="date">17/07/24</p>
-                    <p class="description">One of the collabs with Koala6six</p>
-                </div>
-
-            </div>
-
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/16-09-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">16/09/24</span>
+            <p class="desc">Matrix. It is cool, I guess...</p>
+          </div>
         </div>
-    </section>
 
-    <section id="more">
-        <div class="container">
-            <h1>A little more about</h1>
-            <p>Here is where I started, my personal tiktok where I posted some highlights and suddenly i became an
-                editor.<br>
-                There is a lot more edits, I would recommend you to check out my tiktok profile, since it is
-                really A LOT, there are even collabs with music producers
-                (aka. <a href="https://soundcloud.com/koala6xis" target="_blank">Koala6six</a>).</p>
-
-            <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@aria.jpeg" data-unique-id="aria.jpeg"
-                data-embed-type="creator" style="max-width: 780px; min-width: 288px;">
-                <section> <a target="_blank" href="https://www.tiktok.com/@aria.jpeg?refer=creator_embed">@aria.jpeg</a>
-                </section>
-            </blockquote>
-            <script async src="https://www.tiktok.com/embed.js"></script>
-
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/editor-portfolio/raw/refs/heads/main/resources/rl-vids/personal/19-08-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">19/08/24</span>
+            <p class="desc">I have been in this place before...</p>
+          </div>
         </div>
-    </section>
 
-
-    <footer>
-        <div class="container">
-
-            <p>&copy; <span id="current-year"></span> Aria. All rights reserved.</p>
-            <div class="main-social-links">
-
-
-
-            </div>
-
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/05-05-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">05/05/24</span>
+            <p class="desc">First edit I really invested time in</p>
+          </div>
         </div>
-    </footer>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
+
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/08-09-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">08/09/24</span>
+            <p class="desc">Transitions tests</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/12-07-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">12/07/24</span>
+            <p class="desc">Brazilian meme, it is funny trust me</p>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <video controls>
+            <source src="https://github.com/aria-jpeg/portifolio-test/raw/refs/heads/main/resources/rl-vids/personal/17-07-24.mp4">
+          </video>
+          <div class="card-meta">
+            <span class="date">17/07/24</span>
+            <p class="desc">One of the collabs with Koala6six</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="more">
+    <div class="section-inner more-inner">
+      <div class="section-label">More</div>
+      <h2><em>Where it all started</em></h2>
+      <p class="more-body">
+        My personal TikTok is where I started — posting highlights and accidentally becoming an editor.
+        There's a lot more there than what's shown here, including collabs with music producers like
+        <a href="https://soundcloud.com/koala6xis" target="_blank">Koala6six</a>.
+      </p>
+      <div class="tiktok-wrapper">
+        <blockquote class="tiktok-embed"
+          cite="https://www.tiktok.com/@ariamystt"
+          data-unique-id="ariamystt"
+          data-embed-type="creator"
+          style="max-width:780px;min-width:288px;">
+          <section><a target="_blank" href="https://www.tiktok.com/@ariamystt?refer=creator_embed">@ariamystt</a></section>
+        </blockquote>
+        <script async src="https://www.tiktok.com/embed.js"></script>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="yr"></span> Aria. All rights reserved.</p>
+  </footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
 
 </body>
+</html>
